@@ -4,8 +4,7 @@ ___
 #### A simple tool for uploading FrontEnd static files to an S3 Bucket.
 ___
 ###
-TODO:
-**Create NPM Package
+
 
 
 ### How to use:
@@ -101,3 +100,7 @@ Check config settings
 Options:
   -c, --config <configPath>     (default: "config.uploadtos3")
 ```
+
+
+__TODO__:
+**Create NPM Package
