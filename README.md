@@ -102,5 +102,7 @@ Options:
 ```
 
 ---
-### TODO LIST__:
-> Create NPM Package
+### TODO LIST :
+- Create NPM Package
+---
+*the end*
