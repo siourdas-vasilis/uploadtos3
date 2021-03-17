@@ -66,7 +66,7 @@ For example:
 ```powershell
 $ uploadtos3 upload
 ```
-<br>
+
 <br>
 
 ### Commands:
