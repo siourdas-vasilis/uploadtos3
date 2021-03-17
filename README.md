@@ -3,6 +3,10 @@ ___
 
 #### A simple tool for uploading FrontEnd static files to an S3 Bucket.
 ___
+###
+TODO:
+**Create NPM Package
+
 
 ### How to use:
 
