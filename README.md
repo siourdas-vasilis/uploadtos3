@@ -106,7 +106,7 @@ ___
 ```powershell
 $ deploytos3 upload [options]
 
-Upload your FrontEnd files to the S3 bucket
+Upload your files to the S3 bucket
 
 Options:
   -e, --env <env>                  Specify environment that will be used from `config.js` file.  (default: "dev")

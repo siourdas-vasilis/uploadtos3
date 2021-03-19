@@ -1,6 +1,6 @@
 {
   "name": "@siourdas-vasilis/deploytos3",
-  "version": "2.0.2",
+  "version": "2.0.5",
   "preferGlobal": true,
   "bin": "./commander.js",
   "description": "~ Uploads your files to Amazon S3 bucket with one command ~",
