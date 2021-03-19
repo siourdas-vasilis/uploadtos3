@@ -1,7 +1,7 @@
 ___
 ## `UploadToS3` 
 
-#### A simple tool for uploading FrontEnd static files to an S3 Bucket.
+#### A simple tool for uploading files to an S3 Bucket.
 ___
 ###
 
