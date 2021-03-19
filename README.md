@@ -18,19 +18,10 @@ ___
 
 Install with Npm or Manually:
 
-<<<<<<< HEAD
 #### **-NPM**  
 
 `npm install @siourdas-vasilis/deploytos3 -g`
 
-=======
-
- #### **-NPM**  
-
-`npm install @siourdas-vasilis/deploytos3 -g`
-
-
->>>>>>> a832dae33ee2df3780f3bbb4990a82b464e24944
 *or*
 
 #### **-Manually to your folder of your choice**
