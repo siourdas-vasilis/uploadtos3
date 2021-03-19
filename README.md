@@ -36,7 +36,7 @@ For example:
 {
     // *required
     "defaults": {         
-        "env": "dev"    //default environment to load
+        "env": "dev"//default environment to load
     },
 
     // Specify your environments
@@ -44,11 +44,11 @@ For example:
     // *required 
     "env": {              
         "dev": {          
-            "path": "./dist",        //your path to be uploaded
-            "ignore": ["assets"],            //paths you want to ignore
-            "profile": "default",    //your AWS profile 
-            "region": "<region>",    //your AWS region
-            "s3Bucket": "arn:aws:s3:<region>:<account-id>:accesspoint/xxxx"    //your S3 accesspoint
+            "path": "./dist",//your path to be uploaded
+            "ignore": ["assets"],//paths you want to ignore
+            "profile": "default",//your AWS profile 
+            "region": "<region>",//your AWS region
+            "s3Bucket": "arn:aws:s3:<region>:<account-id>:accesspoint/xxxx"//your S3 accesspoint
         },
         "prod": {
             "path": "./dist",
