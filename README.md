@@ -2,7 +2,7 @@
 
 ## A simple CLI tool for uploading files to an S3 Bucket
 
-#### ✅ Perfect use for your FrontEnd projects on your S3 Bucket
+#### ✅Perfect use for your FrontEnd projects on your S3 Bucket
 
 <br>
 
@@ -11,12 +11,6 @@
 - Add option of delete S3 files or just upload
 - Detailed Documentation
 
-___
-
-### 📍 Default behaviors
-
-- **Deletes all** existing files on S3 except they are specified in `ignore` option. [TO BE FIXED IN THE FUTURE : should delete only by option]
-- Auto loads `.deploytos3` file inside your root path
 
 ___
 
@@ -24,11 +18,13 @@ ___
 
 Install with Npm or Manually:
 
-#### NPM  
+#### **-NPM**  
 
-> $ `npm install @siourdas-vasilis/deploytos3 -g`
+`npm install @siourdas-vasilis/deploytos3 -g`
 
-#### Manually to your folder of your choice
+*or*
+
+#### **-Manually to your folder of your choice**
 
 1) Move the files to a directory of your choice
 
@@ -92,6 +88,14 @@ For example:
     ```powershell
     $ deploytos3 upload
     ```
+
+___
+
+### 📍 Default behaviors
+
+- **Deletes all** existing files on S3 except they are specified in `ignore` option. [TO BE FIXED IN THE FUTURE : should delete only by option]
+- Auto loads `.deploytos3` file inside your root path
+
 
 ___
 
