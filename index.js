@@ -1,10 +1,10 @@
 const colors = require('colors');
 const glob = require("glob");
+const mime = require('mime');
 
 // App object
 const app = {};
 app.config = require('./config');
-app.attrs = () => app.config.get();
 
 
 //Utils
@@ -35,23 +35,23 @@ app.utils.getDirectories = (src) => {
 app.clearS3 = async () => {
 
     //AWS
-    const AWS = require('./lib/aws/aws').config(app.attrs());
+    const AWS = require('./lib/aws/aws').config(app.config.get());
 
 
     // A) Init S3
     app.s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 
     // B) Get S3 Data
-    var params = { Bucket: app.attrs().s3Bucket };
+    var params = { Bucket: app.config.get().s3Bucket };
     const s3Objects = await app.s3.listObjectsV2(params).promise();
     console.log('> '.green + 'Got objects');
 
 
     // C) Empty S3
     var params = {
-        Bucket: app.attrs().s3Bucket,
+        Bucket: app.config.get().s3Bucket,
         Delete: {
-            Objects: app.utils.excludeFromArray(s3Objects.Contents, app.attrs().ignore, true),
+            Objects: app.utils.excludeFromArray(s3Objects.Contents, app.config.get().ignore, true),
             Quiet: false
         }
     };
@@ -65,15 +65,15 @@ app.clearS3 = async () => {
 }
 
 //Upload to S3
-app.uploadToS3 = async () => {
+app.deploytos3 = async () => {
 
     //AWS
-    const AWS = require('./lib/aws/aws').config(app.attrs());
+    const AWS = require('./lib/aws/aws').config(app.config.get());
     app.s3 = new AWS.S3({ apiVersion: '2006-03-01' });
     const fs = require('fs');
 
     // A) Read all data needs to be uploaded
-    var files = app.utils.excludeFromArray(app.utils.getDirectories(app.attrs().path), app.attrs().ignore.map(el => app.attrs().path + '/' + el), false);
+    var files = app.utils.excludeFromArray(app.utils.getDirectories(app.config.get().path), app.config.get().ignore.map(el => app.config.get().path + '/' + el), false);
     console.log('> '.green + 'Data loaded..');
     console.log(files);
 
@@ -83,7 +83,7 @@ app.uploadToS3 = async () => {
     const proms = [];
     for (const file of files) {
         var filename = file.split('/').pop();
-        var s3name = file.replace(app.attrs().path, '');
+        var s3name = file.replace(app.config.get().path, '');
         if (s3name[0] == '/') { s3name = s3name.slice(1); }
 
         // Read content from the file
@@ -91,30 +91,12 @@ app.uploadToS3 = async () => {
 
         // Setting up S3 upload parameters
         var thisContType = filename.split('.');
-        switch (thisContType.pop()) {
-            case 'html':
-                thisContType = 'text/html';
-                break;
-            case 'css':
-                thisContType = 'text/css';
-                break;
-            case 'js':
-                thisContType = 'application/javascript';
-
-                break;
-            case 'txt':
-                thisContType = 'text/plain';
-                break;
-
-            default:
-                thisContType = 'text/html';
-                break;
-        }
+        
         const params = {
-            Bucket: app.attrs().s3Bucket,
+            Bucket: app.config.get().s3Bucket,
             Key: s3name, // File name you want to save as in S3
             Body: fileContent,
-            ContentType: thisContType
+            ContentType: mime.getType(thisContType.pop())
         };
 
         //C) Uploading files to the bucket
@@ -128,7 +110,7 @@ app.uploadToS3 = async () => {
 app.run = async () => {
     try {
         await app.clearS3();
-        await app.uploadToS3();
+        await app.deploytos3();
         console.log('> '.green + ' Completed  ');
     } catch (error) {
         console.error(error);

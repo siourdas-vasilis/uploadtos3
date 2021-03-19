@@ -2,7 +2,7 @@ const readjson = require("./lib/utils/readjson");
 
 
 var loadedConfig = {}; // loaded configs
-var configPath = 'config.uploadtos3'; // default config path
+var configPath = '.deploytos3'; // default config path
 const getConfigFile = (path) => {
     if (path) { configPath = path; }
     const c = readjson(configPath);

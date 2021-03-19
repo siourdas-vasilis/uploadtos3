@@ -1,11 +1,9 @@
 ___
-## `UploadToS3` 
+## `deploytos3` 
 
 #### A simple tool for uploading files to an S3 Bucket.
 ___
-###
-
-   
+<br>
 
 ### How to use:
 
@@ -18,16 +16,16 @@ ___
 3) Test that the tool is working globally by running:
 
 ```powershell
-$ uploadtos3 -v
+$ deploytos3 -v
 
 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-|       Upload To S3 \_/     |
+|       Deploy To S3 \_/     |
 |~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
  version: 2.0.0
 
 ```
 
-5) Create config file in your project's root path, named `config.uploadtos3`
+5) Create config file in your project's root path, named `.deploytos3`
 
 6) Add your project as well your AWS, details.
 For example:
@@ -67,7 +65,7 @@ For example:
 7) Run the `upload` command in the directory of your project which contains your config file:
 
 ```powershell
-$ uploadtos3 upload
+$ deploytos3 upload
 ```
 
 <br>
@@ -77,7 +75,7 @@ $ uploadtos3 upload
 
 > ***upload [options]***
 ```powershell
-$ uploadtos3 upload [options]
+$ deploytos3 upload [options]
 
 Upload your FrontEnd files to the S3 bucket
 
@@ -87,18 +85,18 @@ Options:
   -pr, --profile <profile>         Specify AWS profile
   -s3, --s3-bucket <bucket>        Specify the S3 bucket
   -ig, --ignore <ignorePathsJSON>  Ignore paths or file for the upload procedure (JSON format)
-  -c, --config <configPath>        Specify the config file of the project (default: "config.uploadtos3")
+  -c, --config <configPath>        Specify the config file of the project (default: ".deploytos3")
 ```
 ---
 > ***check [options]***
 ```powershell
-$ uploadtos3 check [options]
+$ deploytos3 check [options]
 
 Check config settings
 (this command is a tool to check if the config file is found and parsed successfully.)
 
 Options:
-  -c, --config <configPath>     (default: "config.uploadtos3")
+  -c, --config <configPath>     (default: ".deploytos3")
 ```
 
 ---
