@@ -7,12 +7,6 @@ app.config = require('./config');
 app.attrs = () => app.config.get();
 
 
-//AWS
-const AWS = require('./lib/aws/aws').config(app.attrs());
-app.s3 = new AWS.S3({ apiVersion: '2006-03-01' });
-
-
-
 //Utils
 app.utils = {};
 app.utils.excludeFromArray = (files, ignoreThese, withKey = false) => {
@@ -40,8 +34,12 @@ app.utils.getDirectories = (src) => {
 //Clear Bucket objects
 app.clearS3 = async () => {
 
+    //AWS
+    const AWS = require('./lib/aws/aws').config(app.attrs());
+
+
     // A) Init S3
-    console.log('> '.green + 'S3 Initialized');
+    app.s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 
     // B) Get S3 Data
     var params = { Bucket: app.attrs().s3Bucket };
@@ -58,7 +56,6 @@ app.clearS3 = async () => {
         }
     };
     if (params.Delete.Objects.length) {
-        // console.log(params);
         const deleted = await app.s3.deleteObjects(params).promise().catch((err) => { throw (err) });
         console.log('> '.green + 'Deleted from S3:');
         deleted.Deleted.map(el => console.log(('  |-> ' + el.Key).grey));
@@ -69,6 +66,10 @@ app.clearS3 = async () => {
 
 //Upload to S3
 app.uploadToS3 = async () => {
+
+    //AWS
+    const AWS = require('./lib/aws/aws').config(app.attrs());
+    app.s3 = new AWS.S3({ apiVersion: '2006-03-01' });
     const fs = require('fs');
 
     // A) Read all data needs to be uploaded

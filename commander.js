@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const { program } = require('commander');
-const app = require('./index.js');
 var colors = require('colors');
 
 // Setup CLI
@@ -20,6 +19,8 @@ program.command('upload')
     .option('-ig, --ignore <ignorePathsJSON>', 'Ignore paths or file for the upload procedure (JSON format)')
     .option('-c, --config <configPath>', 'Specify the config file of the project', 'config.uploadtos3')
     .action(async (inp) => {
+
+        const app = require('./index.js');
         app.config.load(inp);
         await app.run().catch(err => console.error(err));
     })

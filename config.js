@@ -1,4 +1,3 @@
-const { InvalidOptionArgumentError } = require("commander");
 const readjson = require("./lib/utils/readjson");
 
 
