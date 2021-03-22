@@ -18,13 +18,13 @@ ___
 
 Install with Npm or Manually:
 
-#### **-NPM**  
+#### **🔹NPM**  
 
 `npm install @siourdas-vasilis/deploytos3 -g`
 
 *or*
 
-#### **-Manually to your folder of your choice**
+#### **🔹Manually to your folder of your choice**
 
 1) Move the files to a directory of your choice
 
