@@ -44,7 +44,7 @@ ___
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     |       Deploy To S3 \_/     |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
-     version: 2.0.0
+     version: 2.0.60
     
     ```
 
@@ -63,13 +63,15 @@ For example:
         // Specify your environments
         // you can add as many you wish here
         // *required 
-        "env": {              
+        "env": {        
             "dev": {          
-                "path": "./dist",//your path to be uploaded
-                "ignore": ["assets"],//paths you want to ignore
-                "profile": "default",//your AWS profile 
-                "region": "<region>",//your AWS region
-                "s3Bucket": "arn:aws:s3:<region>:<account-id>:accesspoint/xxxx"//your S3 accesspoint
+                "path": "./dist",       //your path to be uploaded  /required/  
+                "ignore": ["assets"],   //paths you want to ignore  
+                "clearS3": true,        //clear S3 before upload
+                "ignoreS3": ["styles.css"],//paths you want to ignore from S3 deletion (if clearS3=true)
+                "profile": "default",   //your AWS profile      /required/
+                "region": "<region>",   //your AWS region       /required/
+                "s3Bucket": "arn:aws:s3:<region>:<account-id>:accesspoint/xxxx"//your S3 accesspoint    /required/
             },
             "prod": {
                 "path": "./dist",
@@ -93,7 +95,6 @@ ___
 
 ### 📍 Default behaviors
 
-- **Deletes all** existing files on S3 except they are specified in `ignore` option. [TO BE FIXED IN THE FUTURE : should delete only by option]
 - Auto loads `.deploytos3` file inside your root path
 
 
@@ -106,15 +107,19 @@ ___
 ```powershell
 $ deploytos3 upload [options]
 
-Upload your files to the S3 bucket
+Upload your files to your S3 bucket
 
 Options:
-  -e, --env <env>                  Specify environment that will be used from `config.js` file.  (default: "dev")
-  -p, --path <path>                Specify path of the folder that will be uploaded.
-  -pr, --profile <profile>         Specify AWS profile
-  -s3, --s3-bucket <bucket>        Specify the S3 bucket
-  -ig, --ignore <ignorePathsJSON>  Ignore paths or file for the upload procedure (JSON format)
-  -c, --config <configPath>        Specify the config file of the project (default: ".deploytos3")
+  -c, --config <configPath>                 Specify the config file of the project (default: ".deploytos3")
+  -e, --env <env>                           Specify environment that will be used from `config.js` file.
+                                            (default: "dev")
+  -p, --path <path>                         Specify path of the folder that will be uploaded.
+  -pr, --profile <profile>                  Specify AWS profile
+  -s3, --s3-bucket <bucket>                 Specify the S3 bucket
+  -ig, --ignore <ignorePathsJSON>           Ignore paths or files for the upload procedure (JSON format)
+  -ig-s3, --ignore-s3 <ignorePathsJSON_S3>  Ignore paths of S3 (JSON format)
+  -cl-s3, --clear-s3                        Option to delete existing files in S3 before upload begins 
+                                            (used with --ignore-s3  to avoid deletion of specific paths/files)
 ```
 
 ___
